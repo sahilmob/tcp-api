@@ -54,10 +54,7 @@ app.post("/intake-form", (req, res) => {
 });
 
 mongoose
-	.connect(
-		"mongodb://tcp:tcpAdmin123@cluster0-shard-00-00-fmigc.mongodb.net:27017,cluster0-shard-00-01-fmigc.mongodb.net:27017,cluster0-shard-00-02-fmigc.mongodb.net:27017/tcp-sandbox?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true",
-		{ useNewUrlParser: true }
-	)
+	.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 	.then(result => {
 		console.log("DB connectd");
 		app.listen(port, () => {
